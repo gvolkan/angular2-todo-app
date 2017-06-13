@@ -3,18 +3,20 @@
     <h1>Todos</h1>
     <input class="new-todo" placeholder="What needs to be done?" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
   </header>
-  <section class="main" *ngIf="todos.length > 0">
+  <section class="main" *ngIf="openTodos.length > 0">
     <ul class="todo-list">
-      <li *ngFor="let todo of todos" [class.completed]="todo.complete">
+      <li *ngFor="let todo of openTodos" [class.completed]="todo.complete">
         <div class="view">
           <input class="toggle" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
-          <label >{{todo.title}}</label>
+          <label>{{todo.title}}</label>
           <button class="destroy" (click)="removeTodo(todo)"></button>
         </div>
       </li>
     </ul>
   </section>
-  <footer class="footer" *ngIf="todos.length > 0">
-    <span class="todo-count"><strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item' : 'items'}} left</span>
+  <footer class="footer" *ngIf="openTodos.length > 0 || completedTodos.length > 0">
+    <!--<span class="todo-count"><strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item' : 'items'}} left</span>-->
+    <span style="margin-right:10px;" *ngIf="openTodos.length > 0" class="todo-count"><strong>{{openTodos.length}}</strong> {{openTodos.length == 1 ? 'item' : 'items'}} left</span>
+    <span *ngIf="completedTodos.length > 0" class="todo-count"><strong>{{completedTodos.length}}</strong> {{completedTodos.length == 1 ? 'item' : 'items'}} completed</span>
   </footer>
 </section>

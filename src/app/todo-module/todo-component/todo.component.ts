@@ -32,8 +32,15 @@ export class TodoComponent implements OnInit {
     return this.todoService.getAllTodos();
   }
 
+  get openTodos() {
+    return this.todoService.getAllTodos().filter(t => t.complete === false);
+  }
+
+  get completedTodos() {
+    return this.todoService.getAllTodos().filter(t => t.complete === true);
+  }
+
 
   ngOnInit() {
-    console.log('yaratıldı');
   }
 }
