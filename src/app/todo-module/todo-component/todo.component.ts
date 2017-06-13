@@ -11,6 +11,7 @@ import { Todo } from './../todo-model';
 
 export class TodoComponent implements OnInit {
   newTodo: Todo = new Todo();
+  selection = 'ALL';
 
   constructor(private todoService: TodoService) {
   }
@@ -40,6 +41,11 @@ export class TodoComponent implements OnInit {
     return this.todoService.getAllTodos().filter(t => t.complete === true);
   }
 
+  changeSelection(_selection) {
+
+    this.selection = _selection;
+    console.log('selection changed: ' + _selection);
+  }
 
   ngOnInit() {
   }
